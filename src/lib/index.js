@@ -48,13 +48,17 @@ export default class extends React.Component {
           window.addEventListener("deviceorientation", this.handleOrientation, true);
         }
 
+        componentWillUnmount() {
+          window.removeEventListener('mousemove', this.updatePosition, false)
+          window.removeEventListener("deviceorientation", this.handleOrientation, true);
+        }
+
         handleOrientation = (e) => {
           if ( !this.resizeTimeout ) {
             this.resizeTimeout = setTimeout(() => {
               this.resizeTimeout = null;
-              const xFactor = this.config.xFactor;
-              const yFactor = this.config.yFactor;
-
+              const xFactor = this.config.xFactor
+              const yFactor = this.config.yFactor
               var getYFromCenter = yFactor * ((e.target.innerHeight / 2) - e.alpha / e.gamma)
               var getXFromCenter = xFactor * ((e.target.innerWidth / 2) - e.alpha / e.gamma)
               this.setState({
@@ -90,7 +94,7 @@ export default class extends React.Component {
           const { children } = this.props
 
           return (
-                <Motion style={this.state.toStyle}>{motionStyle =>
+                <Motion defaultStyle={this.props.layerStyle} style={this.state.toStyle}>{motionStyle =>
                   <div ref="layer" style={{...motionStyle, ...this.props.layerStyle}}>
                     { children }
                   </div>
