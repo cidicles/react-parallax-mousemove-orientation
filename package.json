@@ -1,6 +1,6 @@
 {
   "name": "react-parallax-mousemove-orientation",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Parallax elements based on mousemovement inspired by react-springy-parallax",
   "main": "build/index.js",
   "scripts": {
